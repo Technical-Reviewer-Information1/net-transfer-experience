@@ -85,7 +85,7 @@ def calculate_transfer_time(file_size, speed):
     return file_size / speed
 
 # メインタイトル
-st.markdown('ネットワークの転送速度（pp.106-107）')
+st.title('ネットワークの転送速度（pp.106-107）')
 st.caption("Created by Dit-Lab.(Daiki Ito)")
 st.caption("Supported by Tomoaki ATSUMI")
 st.markdown("**ネットワーク通信の転送速度106-107を体験的に学習しよう！**")
