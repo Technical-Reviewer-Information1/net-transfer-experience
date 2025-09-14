@@ -85,11 +85,13 @@ def calculate_transfer_time(file_size, speed):
     return file_size / speed
 
 # メインタイトル
-st.markdown('<p class="big-font">🌐 ネットワーク転送速度体験アプリ</p>', unsafe_allow_html=True)
-st.markdown("**ネットワーク通信の転送速度を体験的に学習しよう！**")
+st.markdown('ネットワークの転送速度（pp.106-107）')
+st.caption("Created by Dit-Lab.(Daiki Ito)")
+st.caption("Supported by Tomoaki ATSUMI")
+st.markdown("**ネットワーク通信の転送速度106-107を体験的に学習しよう！**")
 
 # 設定エリア
-st.markdown('<p class="medium-font">⚙️ 設定</p>', unsafe_allow_html=True)
+st.markdown('<p class="medium-font">⚙️ 設106-107定</p>', unsafe_allow_html=True)
 
 # 設定用のカラム
 setting_col1, setting_col2 = st.columns(2)
@@ -100,7 +102,6 @@ with setting_col1:
     # ファイルサイズ選択
     file_types = {
         "テキストファイル (1KB)": 1024,
-        
         "写真 (5MB)": 5 * 1024 * 1024,
         "音楽ファイル (10MB)": 10 * 1024 * 1024,
         "動画ファイル (100MB)": 100 * 1024 * 1024,
