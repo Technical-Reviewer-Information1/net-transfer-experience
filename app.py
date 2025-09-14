@@ -88,38 +88,50 @@ def calculate_transfer_time(file_size, speed):
 st.markdown('<p class="big-font">🌐 ネットワーク転送速度体験アプリ</p>', unsafe_allow_html=True)
 st.markdown("**ネットワーク通信の転送速度を体験的に学習しよう！**")
 
-# サイドバー：設定
-st.sidebar.header("設定")
+# 設定エリア
+st.markdown('<p class="medium-font">⚙️ 設定</p>', unsafe_allow_html=True)
 
-# ファイルサイズ選択
-file_types = {
-    "テキストファイル (1KB)": 1024,
-    "写真 (5MB)": 5 * 1024 * 1024,
-    "音楽ファイル (10MB)": 10 * 1024 * 1024,
-    "動画ファイル (100MB)": 100 * 1024 * 1024,
-    "映画ファイル (2GB)": 2 * 1024 * 1024 * 1024,
-    "カスタム": 0
-}
+# 設定用のカラム
+setting_col1, setting_col2 = st.columns(2)
 
-selected_file = st.sidebar.selectbox("転送するファイルの種類", list(file_types.keys()))
+with setting_col1:
+    st.markdown("**ファイル設定**")
 
-if selected_file == "カスタム":
-    custom_size = st.sidebar.number_input("ファイルサイズ (MB)", min_value=0.001, max_value=10000.0, value=1.0)
-    file_size = custom_size * 1024 * 1024
-else:
-    file_size = file_types[selected_file]
+    # ファイルサイズ選択
+    file_types = {
+        "テキストファイル (1KB)": 1024,
+        
+        "写真 (5MB)": 5 * 1024 * 1024,
+        "音楽ファイル (10MB)": 10 * 1024 * 1024,
+        "動画ファイル (100MB)": 100 * 1024 * 1024,
+        "映画ファイル (2GB)": 2 * 1024 * 1024 * 1024,
+        "カスタム": 0
+    }
 
-# ネットワーク種類選択
-network_speeds = {
-    "光ファイバー": 100 * 1024 * 1024,  # 100Mbps
-    "ADSL": 8 * 1024 * 1024,           # 8Mbps
-    "モバイル4G": 20 * 1024 * 1024,     # 20Mbps
-    "モバイル3G": 2 * 1024 * 1024,      # 2Mbps
-    "衛星通信": 1 * 1024 * 1024         # 1Mbps
-}
+    selected_file = st.selectbox("転送するファイルの種類", list(file_types.keys()))
 
-selected_network = st.sidebar.selectbox("ネットワークの種類", list(network_speeds.keys()))
-base_speed = network_speeds[selected_network] / 8  # bpsからByte/sに変換
+    if selected_file == "カスタム":
+        custom_size = st.number_input("ファイルサイズ (MB)", min_value=0.001, max_value=10000.0, value=1.0)
+        file_size = custom_size * 1024 * 1024
+    else:
+        file_size = file_types[selected_file]
+
+with setting_col2:
+    st.markdown("**ネットワーク設定**")
+
+    # ネットワーク種類選択
+    network_speeds = {
+        "光ファイバー": 100 * 1024 * 1024,  # 100Mbps
+        "ADSL": 8 * 1024 * 1024,           # 8Mbps
+        "モバイル4G": 20 * 1024 * 1024,     # 20Mbps
+        "モバイル3G": 2 * 1024 * 1024,      # 2Mbps
+        "衛星通信": 1 * 1024 * 1024         # 1Mbps
+    }
+
+    selected_network = st.selectbox("ネットワークの種類", list(network_speeds.keys()))
+    base_speed = network_speeds[selected_network] / 8  # bpsからByte/sに変換
+
+st.divider()
 
 # メインコンテンツ
 col1, col2 = st.columns([2, 1])
