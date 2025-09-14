@@ -11,7 +11,7 @@ import queue
 
 # ページ設定
 st.set_page_config(
-    page_title="ネットワーク転送速度体験アプリ",
+    page_title="ネットワークの転送速度",
     page_icon="🌐",
     layout="wide"
 )
