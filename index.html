@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ネットワークの転送速度｜情報Ⅰ共通テスト対策問題集</title>
+<meta name="description" content="バイトとビットの取りちがえが失点の最大の原因です。単位の変換から式の立て方まで、途中式を見ながら身につけましょう。">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22%3E%3Crect width=%2232%22 height=%2232%22 fill=%22%2315181c%22/%3E%3Ctext x=%2216%22 y=%2222%22 font-size=%2218%22 font-family=%22monospace%22 fill=%22%23fff%22 text-anchor=%22middle%22%3E01%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/app.css">
+</head>
+<body>
+
+<header class="app-header">
+  <div class="inner">
+    <span class="eyebrow">第 4 章　情報通信ネットワーク　4-3</span>
+    <h1>ネットワークの転送速度（pp.106-107）</h1>
+    <p class="lead">バイトとビットの取りちがえが失点の最大の原因です。単位の変換から式の立て方まで、途中式を見ながら身につけましょう。</p>
+    <p class="credit">Created by Dit-Lab.(Daiki ITO)　/　Supported by Tomoaki ATSUMI</p>
+  </div>
+</header>
+
+<main class="wrap">
+  <section class="step" id="step1">
+    <h2><span class="no">STEP 1</span>まず単位をそろえる</h2>
+    <p class="desc">失点のほとんどはここです。<strong>データ量はB（バイト）、通信速度はbps（ビット毎秒）</strong>。1B ＝ 8bit なので、必ず8倍します。</p>
+
+    <div class="panel">
+      <div class="eqbox" style="text-align:left;line-height:2.2">
+        1 B（バイト） ＝ <strong>8 bit（ビット）</strong>　／　1 kB ＝ 1000 B　／　1 MB ＝ 1000 kB ＝ 1,000,000 B<br>
+        <span class="term" data-t="ビット毎秒">bps</span>（ビット毎秒） ＝ 1秒間に送れる<strong>ビット</strong>数　／　Mbps ＝ 100万bps
+      </div>
+
+      <div class="grid c2" style="margin-top:16px">
+        <div>
+          <h3 style="font-size:.86rem;color:var(--ink-2);margin-bottom:8px">変換ドリル</h3>
+          <div class="card-q"><div class="q-scene" id="dText"></div></div>
+          <div class="btn-row">
+            <input type="text" id="dIn" class="mono" inputmode="decimal" placeholder="答え" style="max-width:180px">
+            <button class="btn primary" id="dCheck">確かめる</button>
+            <button class="btn" id="dNext">次の問題</button>
+          </div>
+          <div class="note" id="dFb" hidden style="margin-top:12px"></div>
+          <div class="badge" style="margin-top:10px">正解 <span class="score" id="dScore">0</span> / <span class="score" id="dTotal">0</span></div>
+        </div>
+        <div>
+          <h3 style="font-size:.86rem;color:var(--ink-2);margin-bottom:8px">よく使う値</h3>
+          <div class="tbl-scroll"><table class="tbl" id="drillTable">
+            <thead><tr><th>データ量</th><th>ビット数</th></tr></thead>
+            <tbody>
+              <tr><td>1 MB</td><td>8,000,000 bit ＝ 8 Mbit</td></tr>
+              <tr><td>10 MB</td><td>80 Mbit</td></tr>
+              <tr><td>60 MB</td><td>480 Mbit</td></tr>
+              <tr><td>100 MB</td><td>800 Mbit</td></tr>
+              <tr><td>200 MB</td><td>1,600 Mbit</td></tr>
+              <tr><td>1 GB</td><td>8,000 Mbit ＝ 8 Gbit</td></tr>
+            </tbody></table></div>
+          <div class="note info" style="margin-top:10px">
+            <strong>MB を Mbit に直すには8倍するだけ。</strong>「M」はそのままで構いません。
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="step" id="step2">
+    <h2><span class="no">STEP 2</span>3つの式は1つの関係から</h2>
+    <p class="desc">覚えるのは1つだけ。<strong>データ量 ＝ 速度 × 時間 × 効率</strong>。あとは求めたいものを左に出すだけです。</p>
+    <div class="triangle" id="triBox"></div>
+    <div class="eqbox" style="margin-top:14px;text-align:left;line-height:2.3">
+      時間 ＝ <span class="mono">データ量(bit) ÷ (速度(bps) × <span class="term" data-t="転送効率">効率</span>)</span><br>
+      速度 ＝ <span class="mono">データ量(bit) ÷ (時間 × 効率)</span><br>
+      効率 ＝ <span class="mono">データ量(bit) ÷ (速度 × 時間)</span>
+    </div>
+  </section>
+
+  <section class="step" id="step3">
+    <h2><span class="no">STEP 3</span>計算してみる（途中式つき）</h2>
+    <p class="desc">3つの値を入れると、残り1つを途中式つきで求めます。</p>
+    <div class="panel">
+      <label class="fld" for="target">求めたいもの</label>
+      <select id="target" class="sel" style="max-width:280px">
+        <option value="time">かかる時間</option>
+        <option value="speed">通信速度</option>
+        <option value="eff">転送効率</option>
+        <option value="size">データ量</option>
+      </select>
+
+      <div class="calcrow" style="margin-top:14px">
+        <div><label for="cSize">データ量</label>
+          <input type="number" id="cSize" value="60" step="any">
+          <select id="cSizeU" class="sel" style="margin-top:6px"><option value="1000000">MB</option><option value="1000">kB</option><option value="1">B</option><option value="1000000000">GB</option></select>
+        </div>
+        <div><label for="cSpeed">通信速度</label>
+          <input type="number" id="cSpeed" value="30" step="any">
+          <select id="cSpeedU" class="sel" style="margin-top:6px"><option value="1000000">Mbps</option><option value="1000">kbps</option><option value="1">bps</option><option value="1000000000">Gbps</option></select>
+        </div>
+        <div><label for="cTime">時間（秒）</label><input type="number" id="cTime" value="16" step="any"></div>
+        <div><label for="cEff">転送効率（％）</label><input type="number" id="cEff" value="100" step="any"></div>
+      </div>
+
+      <div class="bigans" id="ansOut">—</div>
+      <div class="workbox" id="workOut"></div>
+      <div class="note info" style="margin-top:12px">
+        求めたいものの欄は入力しなくてかまいません。単位は自動でそろえて計算します。
+      </div>
+    </div>
+  </section>
+
+  <section class="step" id="step4">
+    <h2><span class="no">STEP 4</span>本文と同じ問題を解く</h2>
+    <p class="desc">選択肢には「8倍を忘れた値」「割る向きを逆にした値」がまぎれています。</p>
+    <div class="panel">
+      <div class="qhead">
+        <span class="badge" id="qProgress">1 / 1</span>
+        <span class="badge">正解 <span class="score" id="qScore">0</span></span>
+      </div>
+      <div class="card-q"><div class="q-scene" id="qText"></div></div>
+      <div class="choice4" id="qChoices"></div>
+      <div class="note" id="qFb" hidden style="margin-top:12px"></div>
+      <div class="btn-row" style="margin-top:12px">
+        <button class="btn primary" id="qNext" disabled>次の問題</button>
+        <button class="btn ghost" id="qReset">最初から</button>
+        <button class="btn" id="qMake">似た問題を作る</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="step" id="step5">
+    <h2><span class="no">STEP 5</span>身近な場面で実感する</h2>
+    <p class="desc">回線の速さを変えて、いろいろなファイルの転送にどれくらいかかるかを見てみましょう。</p>
+    <div class="panel">
+      <label class="fld" for="lineSpeed">通信速度：<span class="mono" id="lineSpeedV">100</span> Mbps</label>
+      <input type="range" id="lineSpeed" min="1" max="1000" step="1" value="100">
+      <label class="fld" style="margin-top:10px" for="lineEff">転送効率：<span class="mono" id="lineEffV">80</span> ％</label>
+      <input type="range" id="lineEff" min="10" max="100" step="5" value="80">
+      <div class="tbl-scroll" style="margin-top:12px"><table class="tbl" id="lifeTable"></table></div>
+      <div id="lifeChart" style="margin-top:12px"></div>
+      <div class="note" id="lifeNote" style="margin-top:12px"></div>
+      <div class="toolbar" id="lifeTools"></div>
+    </div>
+  </section>
+
+  <section class="step" id="glossary">
+    <h2><span class="no">用語</span>この節で出てくることば</h2>
+    <div id="glossBox"></div>
+  </section>
+
+  <section class="step">
+    <h2><span class="no">まとめ</span>転送速度の計算のポイント</h2>
+    <ul style="margin:0;padding-left:1.2em;color:var(--ink-2);font-size:.92rem;line-height:2.05">
+      <li><strong>1B ＝ 8bit。</strong>MBをMbitに直すには8倍する。ここを忘れると答えが8分の1になる。</li>
+      <li>時間 ＝ <span class="mono">データ量(bit) ÷ (速度 × 効率)</span>。</li>
+      <li>転送効率が80％なら、実際に使える速度は<strong>表示速度の0.8倍</strong>。</li>
+      <li>「速度を求める」問題では、<strong>実効速度を効率で割って理論値に戻す</strong>ことを忘れない。</li>
+      <li>1MB＝1000kB とする問題と、1MB＝1024kB とする問題がある。<strong>問題文の指定に従う。</strong></li>
+    </ul>
+  </section>
+
+  <section class="step">
+    <h2><span class="no">活用</span>授業・探究での使い方</h2>
+    <div class="use-note">
+      <h3>授業で</h3>
+      <ul>
+        <li>STEP 1 の単位変換ドリルを小テスト代わりに使う（毎回問題が変わる）。</li>
+        <li>STEP 2 の三角図で、時間・データ量・速度の関係を確認してから計算に入る。</li>
+        <li>STEP 4 は本文と同じ3問。途中式ボタンで解説を出しながら進められる。</li>
+      </ul>
+      <h3 style="margin-top:12px">探究で</h3>
+      <ul>
+        <li>自分のスマートフォンの通信速度を測り、動画1本の視聴に必要なデータ量を試算する。</li>
+        <li>学校の回線速度から、クラス全員が同時に動画を見たときの1人あたりの速度を見積もる。</li>
+        <li>転送効率が100％にならない理由を調べ、何にデータが使われているのかを説明する。</li>
+      </ul>
+    </div>
+  </section>
+
+</main>
+
+<footer class="app-footer">
+  情報Ⅰ 共通テスト対策問題集（技術評論社）連動Webアプリ　/　Created by Dit-Lab.(Daiki ITO)　/　Supported by Tomoaki ATSUMI
+</footer>
+
+<script src="js/tools.js"></script>
+<script src="js/chart.js"></script>
+<script src="js/terms.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
