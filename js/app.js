@@ -228,5 +228,16 @@
     newDrill(); drawTri(); calc(); startQuiz(false); drawLife();
     window.Terms.attach();
   }
+  if (window.Predict) Predict.make('pdN', {
+    q: '<strong>100Mbps</strong> の回線で <strong>100MB</strong> のファイルを送ると、何秒かかるでしょう？（転送効率は100％とします）',
+    type: 'num', unit: '秒', placeholder: '秒',
+    answer: function () { return 100 * 8 / 100; },
+    show: function (r) {
+      return '100MB ＝ 100 × 8 ＝ <strong>800Mビット</strong>。800 ÷ 100 ＝ <strong>' + r + '秒</strong>です。';
+    },
+    why: '「1秒」と答えたくなりますが、<strong>MB（バイト）と Mbps（ビット）は8倍ちがいます</strong>。' +
+         '回線の速さはビット、ファイルの大きさはバイトで書くのがふつうなので、まず単位をそろえるのが鉄則です。'
+  });
+
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init); else init();
 })();
